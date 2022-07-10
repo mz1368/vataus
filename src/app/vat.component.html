@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-title>Austrian VAT Calculator</mat-card-title>
+  <mat-card-content>
+    <div class="slider">
+      <mat-label>VAT Rate </mat-label>
+      <mat-slider
+        [min]="0"
+        [max]="2"
+        [step]="1"
+        (change)="onSliderChange($event)"
+      ></mat-slider>
+      <span> {{ vatRate }} %</span>
+    </div>
+
+    <mat-radio-group [(ngModel)]="currentInput">
+      <mat-radio-button value="Net">
+        <mat-form-field appearance="fill">
+          <mat-label>Price without VAT</mat-label>
+          <input
+          id="net"
+            matInput
+            [disabled]="currentInput !== 'Net'"
+            [(ngModel)]="net"
+            (ngModelChange)="onNetChanged()"
+          />
+        </mat-form-field>
+      </mat-radio-button>
+      <mat-radio-button value="VAT">
+        <mat-form-field appearance="fill">
+          <mat-label>Value-Added Tax</mat-label>
+          <input
+          id="vat"
+            matInput
+            [disabled]="currentInput !== 'VAT'"
+            [(ngModel)]="vat"
+            (ngModelChange)="onVatChanged()"
+          />
+        </mat-form-field>
+      </mat-radio-button>
+      <mat-radio-button value="Gross">
+        <mat-form-field appearance="fill">
+          <mat-label> Price incl. VAT</mat-label>
+          <input
+          id="gross"
+            matInput
+            [disabled]="currentInput !== 'Gross'"
+            [(ngModel)]="gross"
+            (ngModelChange)="onGrossChanged()"
+          />
+        </mat-form-field>
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card-content>
+</mat-card>
